@@ -1,6 +1,7 @@
 # This is where you build your AI for the Catastrophe game.
 
 from joueur.base_ai import BaseAI
+from .controller import Controller
 
 # <<-- Creer-Merge: imports -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
 # you can add additional import(s) here
@@ -44,6 +45,8 @@ class AI(BaseAI):
         # replace with your start logic
         # <<-- /Creer-Merge: start -->>
 
+        self._controller = Controller(self, self.player)
+
     def game_updated(self):
         """ This is called every time the game's state updates, so if you are
         tracking anything you can update it here.
@@ -70,6 +73,7 @@ class AI(BaseAI):
         Returns:
             bool: Represents if you want to end your turn. True means end your turn, False means to keep your turn going and re-call this function.
         """
+        self._controller.run_turn()
         # <<-- Creer-Merge: runTurn -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
         # Put your game logic here for runTurn
         return True
